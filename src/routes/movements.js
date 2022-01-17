@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const { getMovements, getMovementsByName } = require("../controllers/movementsControllers")
+const { getMovements, getMovementsByName, createMovement } = require("../controllers/movementsControllers")
 
 const router = Router()
 
@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       const movements = await getMovements()
       return res.status(200).json(movements)
     } catch (error) {
-      return res.status(400).send(error)
+      return res.status(400).send({ message: error })
     }
   // } else {
   //   try {
@@ -28,6 +28,8 @@ router.post('/', async (req, res) => {
     await createMovement(newMovement)
     return res.status(200).send('Movement succesfully created')
   } catch (error) {
-    return res.status(400).send(error)
+    return res.status(400).send({ message: error })
   }
 })
+
+module.exports = router

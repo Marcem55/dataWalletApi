@@ -42,3 +42,8 @@ const createMovement = async (newMovement) => {
     console.log(error);
   }
 }
+
+module.exports = {
+  getMovements,
+  createMovement
+}
